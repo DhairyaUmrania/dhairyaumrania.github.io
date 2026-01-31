@@ -144,8 +144,77 @@
             position: relative;
         }
 
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
         .hero-content {
             animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-image-container {
+            position: relative;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .hero-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--accent-cyan);
+            border-radius: 12px;
+            z-index: -1;
+            transition: all 0.3s ease;
+        }
+
+        .hero-image-wrapper:hover::before {
+            top: -10px;
+            right: -10px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            position: relative;
+            z-index: 1;
+            filter: grayscale(20%);
+            transition: all 0.3s ease;
+        }
+
+        .hero-image:hover {
+            filter: grayscale(0%);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.2), transparent);
+            border-radius: 8px;
+            pointer-events: none;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .hero-image-wrapper:hover .image-overlay {
+            opacity: 0.3;
         }
 
         @keyframes fadeInUp {
@@ -589,6 +658,19 @@
                 font-size: 1.2rem;
             }
 
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-image-container {
+                order: -1;
+            }
+
+            .hero-image-wrapper {
+                max-width: 300px;
+            }
+
             nav ul {
                 gap: 1rem;
             }
@@ -655,18 +737,26 @@
 
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <span class="hero-label">RESEARCH SOFTWARE ENGINEER</span>
-                <h1>Dhairya Umrania</h1>
-                <h2>Building AI Infrastructure at Scale</h2>
-                <p class="hero-description">
-                    Graduate researcher and software engineer specializing in production-grade ML systems, 
-                    large-scale data processing, and NLP infrastructure. Currently architecting AI pipelines 
-                    at Stony Brook Medicine while advancing LLM research at HLAB.
-                </p>
-                <div class="cta-buttons">
-                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                    <a href="https://github.com/DhairyaUmrania" target="_blank" class="btn btn-secondary">View GitHub →</a>
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <span class="hero-label">RESEARCH SOFTWARE ENGINEER</span>
+                    <h1>Dhairya Umrania</h1>
+                    <h2>Building AI Infrastructure at Scale</h2>
+                    <p class="hero-description">
+                        Graduate researcher and software engineer specializing in production-grade ML systems, 
+                        large-scale data processing, and NLP infrastructure. Currently architecting AI pipelines 
+                        at Stony Brook Medicine while advancing LLM research at HLAB.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                        <a href="https://github.com/DhairyaUmrania" target="_blank" class="btn btn-secondary">View GitHub →</a>
+                    </div>
+                </div>
+                <div class="hero-image-container">
+                    <div class="hero-image-wrapper">
+                        <img src="profilepic.png" alt="Dhairya Umrania" class="hero-image">
+                        <div class="image-overlay"></div>
+                    </div>
                 </div>
             </div>
         </div>
