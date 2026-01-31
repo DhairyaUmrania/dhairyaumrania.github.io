@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhairya Umrania - Research Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #0a0e17;
+            --secondary-bg: #141821;
+            --accent-bg: #1a2332;
+            --text-primary: #e8edf4;
+            --text-secondary: #9ba8bc;
+            --accent-blue: #4a9eff;
+            --accent-cyan: #00d4ff;
+            --accent-green: #00ff9f;
+            --border-color: #2a3544;
+            --code-bg: #0d1117;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Animated background grid */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(90deg, rgba(74, 158, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(74, 158, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Fraunces', serif;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 23, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent-cyan);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-cyan);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-label {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(74, 158, 255, 0.1);
+            border: 1px solid var(--accent-blue);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: var(--primary-bg);
+            border: none;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-cyan);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(74, 158, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(74, 158, 255, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* Section */
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out both;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+        }
+
+        /* Experience Cards */
+        .experience-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .experience-card {
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out both;
+        }
+
+        .experience-card:nth-child(1) { animation-delay: 0.1s; }
+        .experience-card:nth-child(2) { animation-delay: 0.2s; }
+        .experience-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .experience-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 20px 60px rgba(74, 158, 255, 0.1);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .experience-title {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .experience-company {
+            font-size: 1rem;
+            color: var(--accent-cyan);
+            font-weight: 500;
+        }
+
+        .experience-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .experience-description {
+            list-style: none;
+        }
+
+        .experience-description li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .experience-description li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out both;
+        }
+
+        .skill-category:nth-child(1) { animation-delay: 0.1s; }
+        .skill-category:nth-child(2) { animation-delay: 0.2s; }
+        .skill-category:nth-child(3) { animation-delay: 0.3s; }
+
+        .skill-category:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-3px);
+        }
+
+        .skill-category h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .skill-tag {
+            background: rgba(74, 158, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 0.4rem 0.9rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent-blue);
+            background: rgba(74, 158, 255, 0.15);
+            color: var(--text-primary);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            animation: fadeInUp 0.8s ease-out both;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 15px 50px rgba(0, 212, 255, 0.1);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .project-icon {
+            font-size: 2rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .project-link {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--accent-cyan);
+        }
+
+        .project-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .tech-tag {
+            background: var(--code-bg);
+            color: var(--accent-cyan);
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+            padding: 8rem 0;
+        }
+
+        #contact h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #contact p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 1rem 2rem;
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(74, 158, 255, 0.05);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Smooth scroll offset for fixed nav */
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Code element styling */
+        code {
+            background: var(--code-bg);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+            color: var(--accent-green);
+        }
+
+        /* Accent decorations */
+        .accent-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">DU</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-label">RESEARCH SOFTWARE ENGINEER</span>
+                <h1>Dhairya Umrania</h1>
+                <h2>Building AI Infrastructure at Scale</h2>
+                <p class="hero-description">
+                    Graduate researcher and software engineer specializing in production-grade ML systems, 
+                    large-scale data processing, and NLP infrastructure. Currently architecting AI pipelines 
+                    at Stony Brook Medicine while advancing LLM research at HLAB.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="https://github.com/DhairyaUmrania" target="_blank" class="btn btn-secondary">View GitHub →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">About Me</span>
+                <h2 class="section-title">Bridging Research & Production</h2>
+                <p class="section-subtitle">
+                    I'm a Master's student in Data Science at Stony Brook University (4.0 GPA, graduating May 2026), 
+                    combining enterprise software engineering experience with cutting-edge AI research. My work focuses 
+                    on building scalable infrastructure for machine learning systems and clinical research applications.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Work Experience</span>
+                <h2 class="section-title">Professional Journey</h2>
+            </div>
+            
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">Research Software Engineer</h3>
+                            <div class="experience-company">SUNY RF, Dept. of Psychology, Stony Brook Medicine</div>
+                        </div>
+                        <div class="experience-date">June 2025 – Present</div>
+                    </div>
+                    <ul class="experience-description">
+                        <li>Architected scalable data processing infrastructure using Python, RAPIDS framework, and Podman containerization for multi-modal sensor datasets from 200+ study participants</li>
+                        <li>Built production-grade NLP pipeline with WhisperNemo speech-to-text engine, processing 200+ hours of clinical interview audio with automated speaker diarization</li>
+                        <li>Engineered geospatial data enrichment system leveraging OpenStreetMap and Forest APIs with efficient batch processing and error handling</li>
+                        <li>Integrated Twilio RESTful API for automated SMS scheduling, reducing manual tasks by 35% and improving patient engagement</li>
+                        <li>Orchestrated automated data workflows using Snakemake, achieving 40% performance improvement in processing throughput</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">Graduate Researcher</h3>
+                            <div class="experience-company">HLAB, Stony Brook University</div>
+                        </div>
+                        <div class="experience-date">June 2025 – Present</div>
+                    </div>
+                    <ul class="experience-description">
+                        <li>Designed and deployed production-grade vLLM inference server infrastructure on Linux GPU clusters, achieving 2x inference speedup and 40% cost reduction</li>
+                        <li>Built end-to-end ML pipeline processing 110,000+ text samples with automated data validation, preprocessing, and evaluation workflows</li>
+                        <li>Engineered distributed computing automation using shell scripts and Python for model serving and large-scale experimentation on HPC infrastructure</li>
+                        <li>Developed automated annotation system integrating external APIs (DeepSeek, GPT-4.0) with 25+ specialized prompt templates, ensuring 85% consistency</li>
+                        <li>Implemented comprehensive data processing pipeline with quality assurance checks across 3 distinct datasets</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">Associate Software Consultant</h3>
+                            <div class="experience-company">Oracle, Mumbai, India</div>
+                        </div>
+                        <div class="experience-date">Aug 2022 – June 2024</div>
+                    </div>
+                    <ul class="experience-description">
+                        <li>Engineered full-stack features for Oracle Banking Digital Experience (OBDX) platform serving Barclays Bank UK with 10M+ customers</li>
+                        <li>Designed and developed RESTful APIs with JSON payloads for secure integration, handling 1M+ daily transactions with comprehensive error handling</li>
+                        <li>Optimized critical database operations by 80% through SQL query tuning, stored procedure optimization, and schema redesign</li>
+                        <li>Led complete Agile development lifecycle with 100% bug resolution rate across 4 quarterly patch releases</li>
+                        <li>Collaborated with UK-based stakeholders to translate complex business requirements into scalable technical solutions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Technical Arsenal</span>
+                <h2 class="section-title">Skills & Technologies</h2>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><span class="accent-dot"></span>Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">Shell Scripting</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><span class="accent-dot"></span>ML & Data</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">vLLM</span>
+                        <span class="skill-tag">RAPIDS</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">WhisperNemo</span>
+                        <span class="skill-tag">Statistical Analysis</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><span class="accent-dot"></span>Infrastructure</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Podman</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">GPU Computing</span>
+                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">GCP</span>
+                        <span class="skill-tag">CI/CD</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><span class="accent-dot"></span>Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">OracleDB</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><span class="accent-dot"></span>Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Snakemake</span>
+                        <span class="skill-tag">Twilio API</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><span class="accent-dot"></span>Practices</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Agile/Scrum</span>
+                        <span class="skill-tag">Full Stack Dev</span>
+                        <span class="skill-tag">API Design</span>
+                        <span class="skill-tag">ETL Pipelines</span>
+                        <span class="skill-tag">System Integration</span>
+                        <span class="skill-tag">Performance Optimization</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Selected Work</span>
+                <h2 class="section-title">Featured Projects</h2>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">🖼️</div>
+                        <div class="project-links">
+                            <a href="https://github.com/DhairyaUmrania/ImageClassification" target="_blank" class="project-link">🔗</a>
+                        </div>
+                    </div>
+                    <h3>Natural Scene Image Classification</h3>
+                    <p>Deep learning model achieving 93.7% accuracy on Intel's dataset using Wide ResNet-50-2 architecture with transfer learning and advanced data augmentation techniques.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">Computer Vision</span>
+                        <span class="tech-tag">Transfer Learning</span>
+                        <span class="tech-tag">GPU Acceleration</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">🏥</div>
+                        <div class="project-links">
+                            <a href="https://github.com/DhairyaUmrania/DoCure" target="_blank" class="project-link">🔗</a>
+                        </div>
+                    </div>
+                    <h3>Electronic Health Record System</h3>
+                    <p>Built OCR-based system extracting text from 200+ medical reports, implementing data pipelines with Regex and NER, featuring interactive dashboard for health analytics. Published in IRJET.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">OCR</span>
+                        <span class="tech-tag">NLP</span>
+                        <span class="tech-tag">Data Pipeline</span>
+                        <span class="tech-tag">Dashboard</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">💰</div>
+                        <div class="project-links">
+                            <a href="https://github.com/DhairyaUmrania/InsuranceFraudDetection" target="_blank" class="project-link">🔗</a>
+                        </div>
+                    </div>
+                    <h3>Insurance Fraud Detection</h3>
+                    <p>Machine learning ensemble model detecting fraudulent insurance claims with 79.2% accuracy. Trained and evaluated 12 different ML algorithms with advanced preprocessing.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">SVM</span>
+                        <span class="tech-tag">Random Forest</span>
+                        <span class="tech-tag">XGBoost</span>
+                        <span class="tech-tag">Ensemble Methods</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">📈</div>
+                        <div class="project-links">
+                            <a href="https://github.com/DhairyaUmrania/StockPricePredictionUsingLSTM" target="_blank" class="project-link">🔗</a>
+                        </div>
+                    </div>
+                    <h3>Stock Price Prediction with LSTM</h3>
+                    <p>LSTM neural network for stock price prediction achieving MAE of 4.54. Implemented advanced preprocessing, normalization, and feature engineering with TensorFlow.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">LSTM</span>
+                        <span class="tech-tag">Time Series</span>
+                        <span class="tech-tag">Deep Learning</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">🔒</div>
+                        <div class="project-links">
+                            <a href="https://github.com/DhairyaUmrania/Group14_ML_IA" target="_blank" class="project-link">🔗</a>
+                        </div>
+                    </div>
+                    <h3>Intrusion Detection System</h3>
+                    <p>ML-based network intrusion detection achieving 99.2% accuracy using Random Forest with SMOTE and ENN. Compared Naive Bayes, Decision Tree, and ensemble approaches.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Random Forest</span>
+                        <span class="tech-tag">SMOTE</span>
+                        <span class="tech-tag">Cybersecurity</span>
+                        <span class="tech-tag">Classification</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">☀️</div>
+                        <div class="project-links">
+                            <a href="https://github.com/DhairyaUmrania/SolarPanelFaultDetection" target="_blank" class="project-link">🔗</a>
+                        </div>
+                    </div>
+                    <h3>Solar Panel Fault Detection</h3>
+                    <p>CNN-based thermal image analysis for solar panel fault detection using transfer learning (MobileNet, Inception Net), achieving 75% classification accuracy.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">CNN</span>
+                        <span class="tech-tag">MobileNet</span>
+                        <span class="tech-tag">Computer Vision</span>
+                        <span class="tech-tag">Transfer Learning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Let's Build Something</h2>
+            <p>
+                I'm actively seeking software engineering, data science, and ML engineering opportunities 
+                starting July 2026. Open to discussing research collaborations, technical projects, or 
+                career opportunities.
+            </p>
+            <div class="contact-links">
+                <a href="mailto:dhairya.umrania28@gmail.com" class="contact-link">
+                    <span>📧</span>
+                    <span>dhairya.umrania28@gmail.com</span>
+                </a>
+                <a href="https://linkedin.com/in/dhairyaumrania" target="_blank" class="contact-link">
+                    <span>💼</span>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/DhairyaUmrania" target="_blank" class="contact-link">
+                    <span>💻</span>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Dhairya Umrania. Built with passion for engineering excellence.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.experience-card, .skill-category, .project-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Navigation background on scroll
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 14, 23, 0.98)';
+            } else {
+                nav.style.background = 'rgba(10, 14, 23, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
